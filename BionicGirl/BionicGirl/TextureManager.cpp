@@ -11,8 +11,7 @@ bool TextureManager::Load(const char* fileName, string id){
 	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(GameInst::Instance()->GetRenderer(), pTempSurface);
 	SDL_FreeSurface(pTempSurface);
 
-	if (pTexture)
-	{
+	if (pTexture){
 		m_textureMap[id] = pTexture;
 		return true;
 	}

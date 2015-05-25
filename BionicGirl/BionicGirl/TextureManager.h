@@ -7,18 +7,21 @@
 
 using namespace std;
 
-class TextureManager
-{
+class TextureManager{
 public:
-	~TextureManager(){};
+	~TextureManager(){
+	};
+
 	bool Load(const char* fileName, string id);
 	void Draw(string id, int x, int y, int width, int height, SDL_RendererFlip flip = SDL_FLIP_NONE);
-	void DrawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void DrawFrame(string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-	map<std::string, SDL_Texture*> m_textureMap;
+	map<string, SDL_Texture*> m_textureMap;
 
 private:
-	TextureManager(){};
+	TextureManager(){
+	};
+
 	friend class Singleton<TextureManager>;
 };
 

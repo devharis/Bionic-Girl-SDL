@@ -1,9 +1,7 @@
 template <class T>
-class Singleton
-{
+class Singleton{
 public:
-	static T* Instance()
-	{
+	static T* Instance(){
 		static T myT;
 		return &myT;
 	}

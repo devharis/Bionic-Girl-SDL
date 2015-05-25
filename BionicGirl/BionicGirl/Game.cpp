@@ -2,31 +2,33 @@
 #include "GameState.h"
 
 void Game::Init(const char* title, const char* icon, int width, int height, bool fullscreen){
-	SDL_Event event;
 	int flags = SDL_WINDOW_OPENGL;
 
-	SDL_Init(SDL_INIT_VIDEO);              // Initialize SDL2
+	SDL_Init(SDL_INIT_VIDEO); // Initialize SDL2
 
-	if (fullscreen)
+	if (fullscreen){
 		flags = SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN;
-
+		width = 1920;
+		height = 1200;
+	}
+	
 	// Create an application window with the following settings:
 	m_pWindow = SDL_CreateWindow(
-		title,							   // window title
-		SDL_WINDOWPOS_UNDEFINED,           // initial x position
-		SDL_WINDOWPOS_UNDEFINED,           // initial y position
-		width,                             // width, in pixels
-		height,                            // height, in pixels
-		flags							   // flags - see below
-		);
+		title, // window title
+		SDL_WINDOWPOS_UNDEFINED, // initial x position
+		SDL_WINDOWPOS_UNDEFINED, // initial y position
+		width, // width, in pixels
+		height, // height, in pixels
+		flags // flags - see below
+	);
 
 	// Check that the window was successfully made
-	if (m_pWindow == NULL) {
+	if (m_pWindow == NULL){
 		// In the event that the window could not be made...
 		printf("Could not create window: %s\n", SDL_GetError());
 	}
 
-	SDL_Surface *iconSurface = IMG_Load(icon);
+	SDL_Surface* iconSurface = IMG_Load(icon);
 	// Set icon
 	SDL_SetWindowIcon(m_pWindow, iconSurface);
 	// Free surface
@@ -55,7 +57,7 @@ void Game::ChangeState(GameState* state){
 void Game::PushState(GameState* state){
 	if (!states.empty())
 		states.back()->Pause();
-	
+
 	states.push_back(state);
 	states.back()->Init();
 }
@@ -84,11 +86,11 @@ void Game::Draw(){
 }
 
 void Game::Clean(){
-	while (!states.empty()) {
+	while (!states.empty()){
 		states.back()->Clean();
 		states.pop_back();
 	}
-	SDL_Delay(3000);  // Pause execution for 3000 milliseconds, for example
+
 	// shutdown SDL
 	SDL_DestroyWindow(m_pWindow);
 	SDL_Quit();

@@ -1,19 +1,19 @@
 #include "GameObject.h"
 
-SDL_Surface* m_pSurface;
-SDL_Rect SrcR;
-SDL_Rect DestR;
-
-void GameObject::Load(char* filename){
-	TextureMngInst::Instance()->Load(filename, "player");
+void GameObject::Load(int x, int y, int width, int height, string textureId){
+	m_x = x;
+	m_y = y;
+	m_width = width;
+	m_height = height;
+	m_textureId = textureId;
 }
 
 void GameObject::Update(){
-	// nothing for now
+	// Not used yet.
 }
 
 void GameObject::Draw(){
-	TextureMngInst::Instance()->Draw("player", 0, 0, 42, 48, SDL_FLIP_HORIZONTAL);
+	TextureMngInst::Instance()->Draw(m_textureId, m_x, m_y, m_width, m_height, SDL_FLIP_HORIZONTAL);
 }
 
 void GameObject::Clean(){

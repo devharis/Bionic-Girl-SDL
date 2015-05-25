@@ -6,30 +6,29 @@
 
 PauseState PauseState::m_PauseState;
 
-void PauseState::Init()
-{
-	pauseSprite = NULL;
-
-	/*pauseSprite = Sprite::Load("paused.bmp");*/
-
+void PauseState::Init(){
+	// Not used yet.
 	printf("PauseState Init Successful\n");
 }
 
-void PauseState::Clean()
-{
+void PauseState::Clean(){
+	// Not used yet.
 	printf("PauseState Clean Successful\n");
 }
 
-void PauseState::Resume(){}
+void PauseState::Resume(){
+	// Not used yet.
+}
 
-void PauseState::Pause() {}
+void PauseState::Pause(){
+	// Not used yet.
+}
 
-void PauseState::HandleEvents()
-{
+void PauseState::HandleEvents(){
 	SDL_Event event;
 
-	if (SDL_PollEvent(&event)) {
-		switch (event.type) {
+	if (SDL_PollEvent(&event)){
+		switch (event.type){
 		case SDL_QUIT:
 			GameInst::Instance()->Quit();
 			break;
@@ -44,13 +43,10 @@ void PauseState::HandleEvents()
 	}
 }
 
-
-void PauseState::Update()
-{
+void PauseState::Update(){
+	// Not used yet.
 }
 
-void PauseState::Draw()
-{
-	//Sprite::Draw(game->GetScreen(), pauseSprite, 0, 0);
-	//SDL_Flip(game->GetScreen());
+void PauseState::Draw(){
+	// Not used yet.
 }

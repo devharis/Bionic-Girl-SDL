@@ -3,27 +3,29 @@
 #include "SDL.h"
 #include "GameState.h"
 
-class PauseState : public GameState
-{
+class PauseState : public GameState{
 public:
-	void Init();
-	void Clean();
+	void Init() override;
+	void Clean() override;
 
-	void Pause();
-	void Resume();
+	void Pause() override;
+	void Resume() override;
 
-	void HandleEvents();
-	void Update();
-	void Draw();
+	void HandleEvents() override;
+	void Update() override;
+	void Draw() override;
 
 	// Implement Singleton Pattern
-	static PauseState* Instance()
-	{
+	static PauseState* Instance(){
 		return &m_PauseState;
 	}
 
 protected:
-	PauseState(){}
+	~PauseState(){
+	}
+
+	PauseState(){
+	}
 
 private:
 	static PauseState m_PauseState;

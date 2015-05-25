@@ -8,14 +8,12 @@ MenuState MenuState::m_MenuState;
 SDL_Surface* optimizedSurface;
 SDL_Texture* texture;
 
-void MenuState::Init()
-{
+void MenuState::Init(){
 	bmpSurface = SDL_LoadBMP("./assets/background.bmp");
 	printf("MenuState Init Successful\n");
 }
 
-void MenuState::Clean()
-{
+void MenuState::Clean(){
 	// Free surface
 	SDL_FreeSurface(bmpSurface);
 	SDL_FreeSurface(optimizedSurface);
@@ -23,22 +21,19 @@ void MenuState::Clean()
 	printf("MenuState Clean Successful\n");
 }
 
-void MenuState::Pause()
-{
+void MenuState::Pause(){
 	printf("MenuState Paused\n");
 }
 
-void MenuState::Resume()
-{
+void MenuState::Resume(){
 	printf("MenuState Resumed\n");
 }
 
-void MenuState::HandleEvents()
-{
+void MenuState::HandleEvents(){
 	SDL_Event event;
 
-	if (SDL_PollEvent(&event)) {
-		switch (event.type) {
+	if (SDL_PollEvent(&event)){
+		switch (event.type){
 		case SDL_QUIT:
 			GameInst::Instance()->Quit();
 			break;
@@ -54,12 +49,10 @@ void MenuState::HandleEvents()
 	}
 }
 
-void MenuState::Update()
-{
+void MenuState::Update(){
 }
 
-void MenuState::Draw()
-{
+void MenuState::Draw(){
 	// Optimizin'
 	optimizedSurface = SDL_ConvertSurface(bmpSurface, GameInst::Instance()->GetScreen()->format, 0);
 	texture = SDL_CreateTextureFromSurface(GameInst::Instance()->GetRenderer(), optimizedSurface);

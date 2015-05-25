@@ -1,8 +1,7 @@
 #pragma once
 #include "Game.h"
 
-class GameState
-{
+class GameState{
 public:
 	virtual void Init() = 0;
 	virtual void Clean() = 0;
@@ -11,13 +10,17 @@ public:
 	virtual void HandleEvents() = 0;
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
-	void ChangeState(GameState* state) {
+
+	void ChangeState(GameState* state){
 		GameInst::Instance()->ChangeState(state);
 	}
 
 protected:
-	GameState() { }
-	~GameState() { }
+	GameState(){
+	}
+
+	~GameState(){
+	}
 
 
 };
