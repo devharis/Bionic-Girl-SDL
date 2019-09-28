@@ -18,7 +18,7 @@ public:
 	void PushState(GameState* state); // new function
 	void PopState(); // new function
 	void HandleEvents(); // remove pointer to game class
-	void Update();
+	void Update(double deltaTime);
 	void Draw();
 	void Clean();
 

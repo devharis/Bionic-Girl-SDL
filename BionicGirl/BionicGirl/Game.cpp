@@ -76,8 +76,8 @@ void Game::HandleEvents(){
 	states.back()->HandleEvents();
 }
 
-void Game::Update(){
-	states.back()->Update();
+void Game::Update(double deltaTime){
+	states.back()->Update(deltaTime);
 }
 
 void Game::Draw(){

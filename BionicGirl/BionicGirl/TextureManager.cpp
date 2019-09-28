@@ -19,7 +19,7 @@ bool TextureManager::Load(const char* fileName, string id){
 	return false;
 }
 
-void TextureManager::Draw(string id, int x, int y, int width, int height, SDL_RendererFlip flip){
+void TextureManager::Draw(const string id, const int x, const int y, const int width, const int height, SDL_RendererFlip flip){
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
 	srcRect.x = 0;
@@ -28,7 +28,7 @@ void TextureManager::Draw(string id, int x, int y, int width, int height, SDL_Re
 	srcRect.h = destRect.h = height;
 	destRect.x = x;
 	destRect.y = y;
-	SDL_RenderCopyEx(GameInst::Instance()->GetRenderer(), m_textureMap[id], &srcRect, &destRect, 0, nullptr, flip);
+	SDL_RenderCopyEx(GameInst::Instance()->GetRenderer(), m_textureMap[id], &srcRect, &destRect, 0, NULL, flip);
 }
 
 void TextureManager::DrawFrame(string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_RendererFlip flip){

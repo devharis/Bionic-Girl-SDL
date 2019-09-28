@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 #include "Game.h"
 #include <map>
+#include <string>
 
 using namespace std;
 

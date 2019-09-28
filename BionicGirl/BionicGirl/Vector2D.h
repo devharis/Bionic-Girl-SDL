@@ -4,15 +4,15 @@
 class Vector2D
 {
 public:
-	Vector2D(float x, float y) : m_x(x), m_y(y) {}
-	float getX() { return m_x; }
-	float getY() { return m_y; }
-	void setX(float x) { m_x = x; }
-	void setY(float y) { m_y = y; }
+	Vector2D(double x, double y) : m_x(x), m_y(y) {}
+	double getX() { return m_x; }
+	double getY() { return m_y; }
+	void setX(double x) { m_x = x; }
+	void setY(double y) { m_y = y; }
 
-	float length() { return sqrt(m_x * m_x + m_y * m_y); }
+	double length() { return sqrt(m_x * m_x + m_y * m_y); }
 private:
-	float m_x;
-	float m_y;
+	double m_x;
+	double m_y;
 };
 

@@ -5,13 +5,13 @@ PlayState PlayState::m_PlayState;
 
 void PlayState::Init(){
 	// Read a scene with world, player and enemies.
-	TextureMngInst::Instance()->Load("./assets/black-mage.png", "blackmage");
-	TextureMngInst::Instance()->Load("./assets/aeris.png", "aeris");
+	TextureMngInst::Instance()->Load("./assets/black-mage.bmp", "blackmage");
+	TextureMngInst::Instance()->Load("./assets/icon.bmp", "icon");
 
 	GameObject* m_pPlayer = new GameObject();
 	m_pPlayer->Load(0, 0, 42, 48, "blackmage");
 	GameObject* m_pEnemy = new GameObject();
-	m_pEnemy->Load(50, 0, 42, 48, "aeris");
+	m_pEnemy->Load(50, 0, 42, 48, "icon");
 
 	m_gameObjects.push_back(m_pPlayer);
 	m_gameObjects.push_back(m_pEnemy);
@@ -20,8 +20,9 @@ void PlayState::Init(){
 }
 
 void PlayState::Clean(){
-	for (vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
+	for (vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
 		m_gameObjects[i]->Clean();
+	}
 	m_gameObjects.clear();
 	// Free memory
 	m_gameObjects.shrink_to_fit();
@@ -55,7 +56,7 @@ void PlayState::HandleEvents(){
 	}
 }
 
-void PlayState::Update(){
+void PlayState::Update(double deltaTime){
 	// Not used yet.
 }
 

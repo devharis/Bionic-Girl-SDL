@@ -43,7 +43,7 @@ void PauseState::HandleEvents(){
 	}
 }
 
-void PauseState::Update(){
+void PauseState::Update(double deltaTime){
 	// Not used yet.
 }
 

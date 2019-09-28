@@ -49,7 +49,7 @@ void MenuState::HandleEvents(){
 	}
 }
 
-void MenuState::Update(){
+void MenuState::Update(double deltaTime){
 }
 
 void MenuState::Draw(){

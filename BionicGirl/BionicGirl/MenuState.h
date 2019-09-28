@@ -11,7 +11,7 @@ public:
 	void Resume() override;
 
 	void HandleEvents() override;
-	void Update() override;
+	void Update(double deltaTime) override;
 	void Draw() override;
 
 	static MenuState* Instance(){
