@@ -3,11 +3,22 @@
 #include "Game.h"
 #include "MenuState.h"
 #include "PlayState.h"
+#include <iostream>
 
 MenuState MenuState::m_MenuState;
 
 void MenuState::init() {
-	bmpSurface = SDL_LoadBMP("./assets/background.bmp");
+	bmpSurface = SDL_LoadBMP("./assets/menu-state.bmp");
+
+	// Optimizin'
+	optimizedSurface = SDL_ConvertSurface(bmpSurface, GameInst::Instance()->get_screen()->format, 0);
+	texture = SDL_CreateTextureFromSurface(GameInst::Instance()->get_renderer(), optimizedSurface);
+
+	if (!texture) {
+		auto error = SDL_GetError();
+		cout << error;
+	}
+
 	printf("MenuState Init Successful\n");
 }
 
@@ -53,9 +64,5 @@ void MenuState::update(const double deltaTime) {
 }
 
 void MenuState::draw() {
-	// Optimizin'
-	optimizedSurface = SDL_ConvertSurface(bmpSurface, GameInst::Instance()->get_screen()->format, 0);
-	texture = SDL_CreateTextureFromSurface(GameInst::Instance()->get_renderer(), optimizedSurface);
-
 	SDL_RenderCopy(GameInst::Instance()->get_renderer(), texture, nullptr, nullptr);
 }

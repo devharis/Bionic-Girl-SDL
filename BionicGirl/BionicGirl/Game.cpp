@@ -81,7 +81,7 @@ void Game::update(double deltaTime){
 }
 
 void Game::draw(){
-	//SDL_RenderClear(m_pRenderer);
+	SDL_RenderClear(m_pRenderer);
 	m_states.back()->draw();
 	SDL_RenderPresent(m_pRenderer);
 }

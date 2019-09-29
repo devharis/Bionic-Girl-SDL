@@ -10,7 +10,7 @@ int main(int argc, char* argv[]){
 	double deltaTime = 0;
 	Uint32 frameStart, frameTime;
 
-	GameInst::Instance()->init("Bionic Girl", "./assets/icon.png", 640, 480, false);
+	GameInst::Instance()->init("Bionic Girl", "./assets/icon.png", 1024, 720, false);
 	GameInst::Instance()->change_state(MenuState::Instance());
 
 	while (GameInst::Instance()->running()){
@@ -24,13 +24,12 @@ int main(int argc, char* argv[]){
 		GameInst::Instance()->update(deltaTime);
 		GameInst::Instance()->draw();
 
-		//frameTime = SDL_GetTicks() - frameStart;
-		/*if (frameTime < DELAY_TIME) { 
+		/*frameTime = SDL_GetTicks() - frameStart;
+		if (frameTime < DELAY_TIME) { 
 			SDL_Delay((int)(DELAY_TIME - frameTime)); 
-		
-		}*/
-		//cout << frameTime;
-		//cout << "\n";
+		}
+		cout << DELAY_TIME;
+		cout << "\n";*/
 	}
 
 	GameInst::Instance()->clean();

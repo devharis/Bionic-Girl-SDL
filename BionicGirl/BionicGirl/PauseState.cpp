@@ -5,11 +5,21 @@
 #include "PauseState.h"
 #include "PlayState.h"
 #include "MenuState.h"
+#include <iostream>
 
 PauseState PauseState::m_PauseState;
 
 void PauseState::init() {
-	bmpSurface = SDL_LoadBMP("./assets/pause-screen.bmp");
+	bmpSurface = SDL_LoadBMP("./assets/pause-state.bmp");
+	// Optimizin'
+	optimizedSurface = SDL_ConvertSurface(bmpSurface, GameInst::Instance()->get_screen()->format, 0);
+	texture = SDL_CreateTextureFromSurface(GameInst::Instance()->get_renderer(), optimizedSurface);
+
+	if (!texture) {
+		auto error = SDL_GetError();
+		cout << error;
+	}
+
 	printf("PauseState Init Successful\n");
 }
 
@@ -57,9 +67,5 @@ void PauseState::update(const double deltaTime) {
 }
 
 void PauseState::draw() {
-	// Optimizin'
-	optimizedSurface = SDL_ConvertSurface(bmpSurface, GameInst::Instance()->get_screen()->format, 0);
-	texture = SDL_CreateTextureFromSurface(GameInst::Instance()->get_renderer(), optimizedSurface);
-
 	SDL_RenderCopy(GameInst::Instance()->get_renderer(), texture, nullptr, nullptr);
 }
