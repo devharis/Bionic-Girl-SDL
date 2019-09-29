@@ -1,10 +1,2 @@
-﻿  Game.cpp
-  GameObject.cpp
-  main.cpp
-  MenuState.cpp
-  PauseState.cpp
-  Player.cpp
-  PlayState.cpp
-  TextureManager.cpp
-  Generating Code...
+﻿  PauseState.cpp
   BionicGirl.vcxproj -> C:\Users\haris\OneDrive\Dokument\GitHub\Bionic-Girl-SDL\BionicGirl\Debug\BionicGirl.exe

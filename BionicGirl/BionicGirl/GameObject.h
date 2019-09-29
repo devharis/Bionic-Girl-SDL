@@ -1,23 +1,16 @@
 #pragma once
+
 #include <SDL.h>
 #include "Game.h"
 
-class GameObject{
+class GameObject {
 
 public:
-	GameObject(){
-	}
+	void load(const int x, const int y, const int width, const int height, const string textureId);
 
-protected:
-	~GameObject(){
-	}
-
-public:
-	void Load(int x, int y, int width, int height, string textureId);
-
-	virtual void Update();
-	virtual void Draw();
-	virtual void Clean();
+	virtual void update();
+	virtual void draw();
+	virtual void clean();
 private:
 	int m_x;
 	int m_y;

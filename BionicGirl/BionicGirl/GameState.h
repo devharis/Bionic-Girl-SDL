@@ -1,27 +1,19 @@
 #pragma once
+
 #include "Game.h"
 
-class GameState{
+class GameState {
 public:
-	virtual void Init() = 0;
-	virtual void Clean() = 0;
-	virtual void Pause() = 0;
-	virtual void Resume() = 0;
-	virtual void HandleEvents() = 0;
-	virtual void Update(double deltaTime) = 0;
-	virtual void Draw() = 0;
+	virtual void init() = 0;
+	virtual void clean() = 0;
+	virtual void pause() = 0;
+	virtual void resume() = 0;
+	virtual void handle_events() = 0;
+	virtual void update(double deltaTime) = 0;
+	virtual void draw() = 0;
 
-	void ChangeState(GameState* state){
-		GameInst::Instance()->ChangeState(state);
+	void change_state(GameState* state) {
+		GameInst::Instance()->change_state(state);
 	}
-
-protected:
-	GameState(){
-	}
-
-	~GameState(){
-	}
-
-
 };
 

@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include "PlayState.h"
 
-PlayState PlayState::m_PlayState;
+PlayState PlayState::m_playState;
 
-void PlayState::Init(){
+void PlayState::init() {
 	// Read a scene with world, player and enemies.
-	TextureMngInst::Instance()->Load("./assets/black-mage.bmp", "blackmage");
-	TextureMngInst::Instance()->Load("./assets/icon.bmp", "icon");
+	TextureMngInst::Instance()->load("./assets/black-mage.bmp", "blackmage");
+	TextureMngInst::Instance()->load("./assets/icon.bmp", "icon");
 
 	GameObject* m_pPlayer = new GameObject();
-	m_pPlayer->Load(0, 0, 42, 48, "blackmage");
+	m_pPlayer->load(0, 0, 42, 48, "blackmage");
 	GameObject* m_pEnemy = new GameObject();
-	m_pEnemy->Load(50, 0, 42, 48, "icon");
+	m_pEnemy->load(50, 0, 42, 48, "icon");
 
 	m_gameObjects.push_back(m_pPlayer);
 	m_gameObjects.push_back(m_pEnemy);
@@ -19,48 +19,51 @@ void PlayState::Init(){
 	printf("PlayState Init Successful\n");
 }
 
-void PlayState::Clean(){
+void PlayState::clean() {
 	for (vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
-		m_gameObjects[i]->Clean();
+		m_gameObjects[i]->clean();
 	}
 	m_gameObjects.clear();
 	// Free memory
 	m_gameObjects.shrink_to_fit();
+
+	SDL_RenderClear(GameInst::Instance()->get_renderer());
 	printf("PlayState Clean Successful\n");
 }
 
-void PlayState::Pause(){
+void PlayState::pause() {
 	printf("PlayState Paused\n");
 }
 
-void PlayState::Resume(){
+void PlayState::resume() {
 	printf("PlayState Resumed\n");
 }
 
-void PlayState::HandleEvents(){
+void PlayState::handle_events() {
 	SDL_Event event;
 
-	if (SDL_PollEvent(&event)){
-		switch (event.type){
+	if (SDL_PollEvent(&event)) {
+		switch (event.type) {
 		case SDL_QUIT:
-			GameInst::Instance()->Quit();
+			GameInst::Instance()->quit();
 			break;
 
 		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym){
-			case SDLK_SPACE:
-				GameInst::Instance()->PushState(PauseState::Instance());
+			switch (event.key.keysym.sym) {
+			case SDLK_ESCAPE: // pause play
+				GameInst::Instance()->push_state(PauseState::Instance());
 				break;
 			}
 		}
 	}
 }
 
-void PlayState::Update(double deltaTime){
-	// Not used yet.
+void PlayState::update(const double deltaTime) {
+	// Not impl yet.
 }
 
-void PlayState::Draw(){
-	for (vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-		m_gameObjects[i]->Draw();
+void PlayState::draw() {
+	for (vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
+		m_gameObjects[i]->draw();
+	}
 }

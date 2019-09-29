@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "GameState.h"
 
-void Game::Init(const char* title, const char* icon, int width, int height, bool fullscreen){
+void Game::init(const char* title, const char* icon, int width, int height, bool fullscreen){
 	int flags = SDL_WINDOW_OPENGL;
 
 	SDL_Init(SDL_INIT_VIDEO); // Initialize SDL2
@@ -39,56 +39,57 @@ void Game::Init(const char* title, const char* icon, int width, int height, bool
 	// Get Window surface
 	m_pScreen = SDL_GetWindowSurface(m_pWindow);
 
-	m_bRunning = true;
+	m_running = true;
 
 	SDL_Log("Game Initialised Succesfully\n");
 
 }
 
-void Game::ChangeState(GameState* state){
-	if (!states.empty()){
-		states.back()->Clean();
-		states.pop_back();
+void Game::change_state(GameState* state){
+	if (!m_states.empty()){
+		m_states.back()->clean();
+		m_states.pop_back();
 	}
-	states.push_back(state);
-	states.back()->Init();
+	m_states.push_back(state);
+	m_states.back()->init();
 }
 
-void Game::PushState(GameState* state){
-	if (!states.empty())
-		states.back()->Pause();
+void Game::push_state(GameState* state){
+	if (!m_states.empty())
+		m_states.back()->pause();
 
-	states.push_back(state);
-	states.back()->Init();
+	m_states.push_back(state);
+	m_states.back()->init();
 }
 
-void Game::PopState(){
-	if (!states.empty()){
-		states.back()->Clean();
-		states.pop_back();
+void Game::pop_state(){
+	if (!m_states.empty()){
+		m_states.back()->clean();
+		m_states.pop_back();
 	}
 
-	if (!states.empty())
-		states.back()->Resume();
+	if (!m_states.empty())
+		m_states.back()->resume();
 }
 
-void Game::HandleEvents(){
-	states.back()->HandleEvents();
+void Game::handle_events(){
+	m_states.back()->handle_events();
 }
 
-void Game::Update(double deltaTime){
-	states.back()->Update(deltaTime);
+void Game::update(double deltaTime){
+	m_states.back()->update(deltaTime);
 }
 
-void Game::Draw(){
-	states.back()->Draw();
+void Game::draw(){
+	//SDL_RenderClear(m_pRenderer);
+	m_states.back()->draw();
 	SDL_RenderPresent(m_pRenderer);
 }
 
-void Game::Clean(){
-	while (!states.empty()){
-		states.back()->Clean();
-		states.pop_back();
+void Game::clean(){
+	while (!m_states.empty()){
+		m_states.back()->clean();
+		m_states.pop_back();
 	}
 
 	// shutdown SDL

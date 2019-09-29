@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-void GameObject::Load(int x, int y, int width, int height, string textureId){
+void GameObject::load(int x, int y, int width, int height, string textureId) {
 	m_x = x;
 	m_y = y;
 	m_width = width;
@@ -8,14 +8,14 @@ void GameObject::Load(int x, int y, int width, int height, string textureId){
 	m_textureId = textureId;
 }
 
-void GameObject::Update(){
-	// Not used yet.
+void GameObject::update() {
+	// Not impl yet.
 }
 
-void GameObject::Draw(){
-	TextureMngInst::Instance()->Draw(m_textureId, m_x, m_y, m_width, m_height, SDL_FLIP_HORIZONTAL);
+void GameObject::draw() {
+	TextureMngInst::Instance()->draw(m_textureId, m_x, m_y, m_width, m_height, SDL_FLIP_HORIZONTAL);
 }
 
-void GameObject::Clean(){
+void GameObject::clean() {
 	delete this;
 }

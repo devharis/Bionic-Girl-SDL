@@ -1,19 +1,12 @@
 #include "Player.h"
 
 
-void Player::Update(){
+void Player::update() {
 }
 
-void Player::Draw(){
-	GameObject::Draw();
+void Player::draw() {
+	GameObject::draw();
 }
 
-void Player::Clean(){
-}
-
-Player::Player(){
-}
-
-
-Player::~Player(){
+void Player::clean() {
 }

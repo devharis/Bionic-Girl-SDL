@@ -149,6 +149,8 @@
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\..\..\Downloads\lumber-general.bmp" />
+    <Image Include="..\..\..\..\..\..\Downloads\pause-screen.bmp" />
     <Image Include="Assets\background.bmp" />
     <Image Include="Assets\black-mage.bmp" />
     <Image Include="Assets\black-mage.png" />

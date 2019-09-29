@@ -1,17 +1,17 @@
 #include "TextureManager.h"
 
-bool TextureManager::Load(const char* fileName, string id){
+bool TextureManager::load(const char* fileName, string id) {
 	SDL_Surface* pTempSurface = IMG_Load(fileName);
 
-	if (!pTempSurface){
+	if (!pTempSurface) {
 		IMG_GetError();
 		return false;
 	}
 
-	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(GameInst::Instance()->GetRenderer(), pTempSurface);
+	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(GameInst::Instance()->get_renderer(), pTempSurface);
 	SDL_FreeSurface(pTempSurface);
 
-	if (pTexture){
+	if (pTexture) {
 		m_textureMap[id] = pTexture;
 		return true;
 	}
@@ -19,7 +19,7 @@ bool TextureManager::Load(const char* fileName, string id){
 	return false;
 }
 
-void TextureManager::Draw(const string id, const int x, const int y, const int width, const int height, SDL_RendererFlip flip){
+void TextureManager::draw(const string id, const int x, const int y, const int width, const int height, SDL_RendererFlip flip) {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
 	srcRect.x = 0;
@@ -28,10 +28,10 @@ void TextureManager::Draw(const string id, const int x, const int y, const int w
 	srcRect.h = destRect.h = height;
 	destRect.x = x;
 	destRect.y = y;
-	SDL_RenderCopyEx(GameInst::Instance()->GetRenderer(), m_textureMap[id], &srcRect, &destRect, 0, NULL, flip);
+	SDL_RenderCopyEx(GameInst::Instance()->get_renderer(), m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
-void TextureManager::DrawFrame(string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_RendererFlip flip){
+void TextureManager::draw_frame(string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_RendererFlip flip) {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
 	srcRect.x = width * currentFrame;
@@ -41,5 +41,5 @@ void TextureManager::DrawFrame(string id, int x, int y, int width, int height, i
 	destRect.x = x;
 	destRect.y = y;
 
-	SDL_RenderCopyEx(GameInst::Instance()->GetRenderer(), m_textureMap[id], &srcRect, &destRect, 0, nullptr, flip);
+	SDL_RenderCopyEx(GameInst::Instance()->get_renderer(), m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }

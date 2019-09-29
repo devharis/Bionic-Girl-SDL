@@ -3,50 +3,63 @@
 #include "SDL.h"
 #include "Game.h"
 #include "PauseState.h"
+#include "PlayState.h"
+#include "MenuState.h"
 
 PauseState PauseState::m_PauseState;
 
-void PauseState::Init(){
-	// Not used yet.
+void PauseState::init() {
+	bmpSurface = SDL_LoadBMP("./assets/pause-screen.bmp");
 	printf("PauseState Init Successful\n");
 }
 
-void PauseState::Clean(){
-	// Not used yet.
+void PauseState::clean() {
+	// Free surface
+	SDL_FreeSurface(bmpSurface);
+	SDL_FreeSurface(optimizedSurface);
+	SDL_RenderClear(GameInst::Instance()->get_renderer());
+
 	printf("PauseState Clean Successful\n");
 }
 
-void PauseState::Resume(){
-	// Not used yet.
+void PauseState::resume() {
+	printf("PauseState Resumed\n");
 }
 
-void PauseState::Pause(){
-	// Not used yet.
+void PauseState::pause() {
+	printf("PauseState Paused\n");
 }
 
-void PauseState::HandleEvents(){
+void PauseState::handle_events() {
 	SDL_Event event;
 
-	if (SDL_PollEvent(&event)){
-		switch (event.type){
+	if (SDL_PollEvent(&event)) {
+		switch (event.type) {
 		case SDL_QUIT:
-			GameInst::Instance()->Quit();
+			GameInst::Instance()->quit();
 			break;
 
 		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym){
-			case SDLK_SPACE:
-				GameInst::Instance()->PopState();
+			switch (event.key.keysym.sym) {
+			case SDLK_SPACE: // resume play
+				GameInst::Instance()->pop_state();
+				break;
+			case SDLK_m: // back to main menu
+				GameInst::Instance()->change_state(MenuState::Instance());
 				break;
 			}
 		}
 	}
 }
 
-void PauseState::Update(double deltaTime){
-	// Not used yet.
+void PauseState::update(const double deltaTime) {
+	// Not impl yet.
 }
 
-void PauseState::Draw(){
-	// Not used yet.
+void PauseState::draw() {
+	// Optimizin'
+	optimizedSurface = SDL_ConvertSurface(bmpSurface, GameInst::Instance()->get_screen()->format, 0);
+	texture = SDL_CreateTextureFromSurface(GameInst::Instance()->get_renderer(), optimizedSurface);
+
+	SDL_RenderCopy(GameInst::Instance()->get_renderer(), texture, nullptr, nullptr);
 }

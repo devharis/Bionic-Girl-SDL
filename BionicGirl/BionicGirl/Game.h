@@ -8,47 +8,41 @@ using namespace std;
 
 class GameState;
 
-class Game{
+class Game {
 public:
-	~Game(){
-	};
+	void init(const char* title, const char* icon, int width, int height, bool fullscreen);
+	void change_state(GameState* state); // new function
+	void push_state(GameState* state); // new function
+	void pop_state(); // new function
+	void handle_events(); // remove pointer to game class
+	void update(double deltaTime);
+	void draw();
+	void clean();
 
-	void Init(const char* title, const char* icon, int width, int height, bool fullscreen);
-	void ChangeState(GameState* state); // new function
-	void PushState(GameState* state); // new function
-	void PopState(); // new function
-	void HandleEvents(); // remove pointer to game class
-	void Update(double deltaTime);
-	void Draw();
-	void Clean();
-
-	bool Running(){
-		return m_bRunning;
+	bool running() {
+		return m_running;
 	}
 
-	void Quit(){
-		m_bRunning = false;
+	void quit() {
+		m_running = false;
 	}
 
-	SDL_Surface* GetScreen(){
+	SDL_Surface* get_screen() {
 		return m_pScreen;
 	}
 
-	SDL_Renderer* GetRenderer(){
+	SDL_Renderer* get_renderer() {
 		return m_pRenderer;
 	}
 
-
 private:
-	Game(){
-	} // add private constructor
 	friend class Singleton<Game>;
-	SDL_Window* m_pWindow;
-	SDL_Renderer* m_pRenderer;
-	vector<GameState*> states;
-	SDL_Surface* m_pScreen;
-	bool m_bFullscreen;
-	bool m_bRunning;
+	SDL_Window* m_pWindow = nullptr;
+	SDL_Renderer* m_pRenderer = nullptr;
+	SDL_Surface* m_pScreen = nullptr;
+	vector<GameState*> m_states;
+	bool m_fullscreen = false;
+	bool m_running = false;
 };
 
 typedef Singleton<Game> GameInst;
