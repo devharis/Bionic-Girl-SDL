@@ -1,4 +1,2 @@
 ﻿  main.cpp
-C:\Users\haris\OneDrive\Dokument\GitHub\Bionic-Girl-SDL\BionicGirl\BionicGirl\main.cpp(5,32): warning C4244:  'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\haris\OneDrive\Dokument\GitHub\Bionic-Girl-SDL\BionicGirl\BionicGirl\main.cpp(31,22): warning C4244:  '=': conversion from 'float' to 'Uint32', possible loss of data
   BionicGirl.vcxproj -> C:\Users\haris\OneDrive\Dokument\GitHub\Bionic-Girl-SDL\BionicGirl\Debug\BionicGirl.exe
