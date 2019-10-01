@@ -8,7 +8,7 @@ void GameObject::load(int x, int y, int width, int height, string textureId) {
 	m_textureId = textureId;
 }
 
-void GameObject::update() {
+void GameObject::update(const float deltaTime) {
 	// Not impl yet.
 }
 

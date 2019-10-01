@@ -62,7 +62,7 @@ void PauseState::handle_events() {
 	}
 }
 
-void PauseState::update(const double deltaTime) {
+void PauseState::update(const float deltaTime) {
 	// Not impl yet.
 }
 

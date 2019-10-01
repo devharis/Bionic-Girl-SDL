@@ -9,7 +9,7 @@ public:
 	virtual void pause() = 0;
 	virtual void resume() = 0;
 	virtual void handle_events() = 0;
-	virtual void update(double deltaTime) = 0;
+	virtual void update(const float deltaTime) = 0;
 	virtual void draw() = 0;
 
 	void change_state(GameState* state) {

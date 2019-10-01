@@ -8,10 +8,10 @@ class GameObject {
 public:
 	void load(const int x, const int y, const int width, const int height, const string textureId);
 
-	virtual void update();
+	virtual void update(const float deltaTime);
 	virtual void draw();
 	virtual void clean();
-private:
+protected:
 	int m_x;
 	int m_y;
 	int m_width;

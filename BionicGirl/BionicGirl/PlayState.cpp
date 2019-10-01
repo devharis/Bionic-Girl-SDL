@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "PlayState.h"
+#include "Player.h"
 
 PlayState PlayState::m_playState;
 
@@ -8,7 +9,7 @@ void PlayState::init() {
 	TextureMngInst::Instance()->load("./assets/black-mage.bmp", "blackmage");
 	TextureMngInst::Instance()->load("./assets/icon.bmp", "icon");
 
-	GameObject* m_pPlayer = new GameObject();
+	GameObject* m_pPlayer = new Player();
 	m_pPlayer->load(0, 0, 42, 48, "blackmage");
 	GameObject* m_pEnemy = new GameObject();
 	m_pEnemy->load(50, 0, 42, 48, "icon");
@@ -58,8 +59,11 @@ void PlayState::handle_events() {
 	}
 }
 
-void PlayState::update(const double deltaTime) {
+void PlayState::update(const float deltaTime) {
 	// Not impl yet.
+	for (vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
+		m_gameObjects[i]->update(deltaTime);
+	}
 }
 
 void PlayState::draw() {

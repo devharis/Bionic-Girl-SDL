@@ -59,7 +59,7 @@ void MenuState::handle_events() {
 	}
 }
 
-void MenuState::update(const double deltaTime) {
+void MenuState::update(const float deltaTime) {
 	// Not impl yet.
 }
 

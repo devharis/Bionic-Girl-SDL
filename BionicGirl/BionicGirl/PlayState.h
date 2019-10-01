@@ -12,7 +12,7 @@ public:
 	void pause() override;
 	void resume() override;
 	void handle_events() override;
-	void update(const double deltaTime) override;
+	void update(const float deltaTime) override;
 	void draw() override;
 
 	static PlayState* Instance() {

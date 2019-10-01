@@ -76,7 +76,7 @@ void Game::handle_events(){
 	m_states.back()->handle_events();
 }
 
-void Game::update(double deltaTime){
+void Game::update(const float deltaTime){
 	m_states.back()->update(deltaTime);
 }
 
