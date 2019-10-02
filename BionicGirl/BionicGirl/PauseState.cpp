@@ -55,6 +55,7 @@ void PauseState::handle_events() {
 				GameInst::Instance()->pop_state();
 				break;
 			case SDLK_m: // back to main menu
+				GameInst::Instance()->pop_state();
 				GameInst::Instance()->change_state(MenuState::Instance());
 				break;
 			}

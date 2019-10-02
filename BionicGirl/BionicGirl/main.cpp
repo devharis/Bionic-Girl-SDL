@@ -3,8 +3,8 @@
 
 
 int main(int argc, char* argv[]){
-	Uint32 currentFrame = SDL_GetTicks();
-	Uint32 lastFrame = 0;
+	float currentFrame = SDL_GetTicks();
+	float lastFrame = 0;
 	float deltaTime = 0;
 	Uint32 frameStart, frameTime;
 
@@ -12,21 +12,16 @@ int main(int argc, char* argv[]){
 	GameInst::Instance()->change_state(MenuState::Instance());
 
 	while (GameInst::Instance()->running()){
-		frameStart = SDL_GetTicks();
-		frametime
+		lastFrame = currentFrame;
+		currentFrame = SDL_GetTicks();
 
 		GameInst::Instance()->handle_events();
 
-		//lastFrame = currentFrame;
-		//currentFrame = SDL_GetTicks();
-
-		//deltaTime = ((currentFrame - lastFrame) * 1000.0f / SDL_GetTicks());
-		GameInst::Instance()->update(0);
+		deltaTime = (currentFrame - lastFrame);
+		GameInst::Instance()->update(deltaTime);
 		GameInst::Instance()->draw();
-
-		frameTime = SDL_GetTicks() - frameStart;
-
-		cout << SDL_GetTicks();
+		
+		cout << deltaTime;
 		cout << "\n";
 	}
 

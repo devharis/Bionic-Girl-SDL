@@ -1,9 +1,10 @@
 #include "Player.h"
 
+const float SPEED = 0.2;
 
 void Player::update(const float deltaTime) {
-	m_y += 1 * deltaTime;
-	m_x += 1 * deltaTime;
+	m_y += deltaTime * SPEED;
+	m_x += deltaTime * SPEED;
 }
 
 void Player::draw() {
@@ -11,4 +12,5 @@ void Player::draw() {
 }
 
 void Player::clean() {
+	delete this;
 }

@@ -12,8 +12,8 @@ public:
 	virtual void draw();
 	virtual void clean();
 protected:
-	int m_x;
-	int m_y;
+	float m_x;
+	float m_y;
 	int m_width;
 	int m_height;
 	string m_textureId;
