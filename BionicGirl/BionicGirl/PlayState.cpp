@@ -9,10 +9,12 @@ void PlayState::init() {
 	TextureMngInst::Instance()->load("./assets/black-mage.bmp", "blackmage");
 	TextureMngInst::Instance()->load("./assets/icon.bmp", "icon");
 
-	GameObject* m_pPlayer = new Player();
-	m_pPlayer->load(0, 0, 42, 48, "blackmage");
-	GameObject* m_pEnemy = new GameObject();
-	m_pEnemy->load(50, 0, 42, 48, "icon");
+	Vector2D vPlayer = Vector2D(0, 0);
+	GameObject* m_pPlayer = new Player(vPlayer, 42, 48, "blackmage");
+	//m_pPlayer->load(vPlayer, 42, 48, "blackmage");
+
+	Vector2D vEnemy = Vector2D(50, 0);
+	GameObject* m_pEnemy = new GameObject(vEnemy, 42, 48, "icon");
 
 	m_gameObjects.push_back(m_pPlayer);
 	m_gameObjects.push_back(m_pEnemy);
