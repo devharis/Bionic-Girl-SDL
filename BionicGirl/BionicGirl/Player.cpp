@@ -11,6 +11,8 @@ Player::Player(Vector2D position, const int width, const int height, const strin
 }
 
 void Player::update(const float deltaTime) {
+	m_velocity.setX(1);
+
 	auto x_position = m_position.getX();
 	auto new_position = x_position + (deltaTime * SPEED);
 	m_position.setX(new_position);
