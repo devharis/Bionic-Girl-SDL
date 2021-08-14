@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "SDL.h"
+#include <SDL.h>
 #include "Game.h"
 #include "MenuState.h"
 #include "PlayState.h"
@@ -9,7 +9,7 @@ MenuState MenuState::m_MenuState;
 
 void MenuState::init() {
 	bmpSurface = SDL_LoadBMP("./assets/menu-state.bmp");
-
+    
 	// Optimizin'
 	optimizedSurface = SDL_ConvertSurface(bmpSurface, GameInst::Instance()->get_screen()->format, 0);
 	texture = SDL_CreateTextureFromSurface(GameInst::Instance()->get_renderer(), optimizedSurface);

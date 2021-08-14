@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SDL.h"
+#include <SDL.h>
 #include "GameState.h"
 
 class MenuState : public GameState {

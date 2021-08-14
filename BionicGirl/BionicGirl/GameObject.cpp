@@ -14,6 +14,8 @@ GameObject::GameObject(const Vector2D position, const int width, const int heigh
 
 void GameObject::update(const float deltaTime) {
 	// Not impl yet.
+    m_velocity += m_acceleration * deltaTime;
+    m_position += m_velocity;
 }
 
 void GameObject::draw() {

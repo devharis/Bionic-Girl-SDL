@@ -7,8 +7,8 @@
 class GameObject {
 
 public:
-	GameObject::GameObject() : m_position(0.0f, 0.0f), m_velocity(0.0f, 0.0f) {};
-	GameObject::GameObject(Vector2D position, const int width, const int height, const string textureId);
+    GameObject() : m_position(0.0f, 0.0f), m_velocity(0.0f, 0.0f), m_acceleration(0.0f, 0.0f) {};
+    GameObject(Vector2D position, const int width, const int height, const string textureId);
 
 	//void load(Vector2D position, const int width, const int height, const string textureId);
 
@@ -18,6 +18,7 @@ public:
 protected:
 	Vector2D m_position;
 	Vector2D m_velocity;
+    Vector2D m_acceleration;
 	string m_textureId;
 	int m_width = 0;
 	int m_height = 0;

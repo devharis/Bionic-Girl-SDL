@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "SDL.h"
+#include <SDL.h>
 #include "Game.h"
 #include "PauseState.h"
 #include "PlayState.h"
