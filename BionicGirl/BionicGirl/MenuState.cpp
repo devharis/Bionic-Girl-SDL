@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "MenuState.h"
 #include "PlayState.h"
+#include "InputHandler.hpp"
 #include <iostream>
 
 MenuState MenuState::m_MenuState;
@@ -40,23 +41,16 @@ void MenuState::resume() {
 }
 
 void MenuState::handle_events() {
-	SDL_Event event;
-
-	if (SDL_PollEvent(&event)) {
-		switch (event.type) {
-		case SDL_QUIT:
-			GameInst::Instance()->quit();
-			break;
-
-		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym) {
-
-			case SDLK_SPACE:
-				GameInst::Instance()->change_state(PlayState::Instance());
-				break;
-			}
-		}
-	}
+    if (InputHandlerInst::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+    {
+        GameInst::Instance()->change_state(PlayState::Instance());
+    }
+    else if (InputHandlerInst::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+    {
+        GameInst::Instance()->quit();
+    } else {
+        // Do nothing
+    }
 }
 
 void MenuState::update(const float deltaTime) {

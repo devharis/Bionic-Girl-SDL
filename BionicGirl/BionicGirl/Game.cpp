@@ -82,6 +82,8 @@ void Game::pop_state(){
 }
 
 void Game::handle_events(){
+    InputHandlerInst::Instance()->update();
+    
 	m_states.back()->handle_events();
 }
 
@@ -101,7 +103,7 @@ void Game::clean(){
 		m_states.pop_back();
 	}
     
-    InputHandlerInst::Instance()->clean();
+    //InputHandlerInst::Instance()->clean();
 
 	// shutdown SDL
 	SDL_DestroyWindow(m_pWindow);

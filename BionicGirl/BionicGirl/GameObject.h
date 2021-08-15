@@ -19,8 +19,11 @@ protected:
 	Vector2D m_position;
 	Vector2D m_velocity;
     Vector2D m_acceleration;
+    SDL_RendererFlip m_flip;
 	string m_textureId;
 	int m_width = 0;
 	int m_height = 0;
+    
+    int m_currentRow;
+    int m_currentFrame;
 };
-

@@ -5,6 +5,7 @@
 #include "PauseState.h"
 #include "PlayState.h"
 #include "MenuState.h"
+#include "InputHandler.hpp"
 #include <iostream>
 
 PauseState PauseState::m_PauseState;
@@ -41,26 +42,23 @@ void PauseState::pause() {
 }
 
 void PauseState::handle_events() {
-	SDL_Event event;
-
-	if (SDL_PollEvent(&event)) {
-		switch (event.type) {
-		case SDL_QUIT:
-			GameInst::Instance()->quit();
-			break;
-
-		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym) {
-			case SDLK_SPACE: // resume play
-				GameInst::Instance()->pop_state();
-				break;
-			case SDLK_m: // back to main menu
-				GameInst::Instance()->pop_state();
-				GameInst::Instance()->change_state(MenuState::Instance());
-				break;
-			}
-		}
-	}
+    if (InputHandlerInst::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+    {
+        GameInst::Instance()->pop_state();
+    }
+    /*else if (InputHandlerInst::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+    {
+        GameInst::Instance()->quit();
+    }*/
+    else if (InputHandlerInst::Instance()->isKeyDown(SDL_SCANCODE_M))
+    {
+        GameInst::Instance()->pop_state();
+        GameInst::Instance()->change_state(MenuState::Instance());
+    }
+    else
+    {
+        // Do nothing
+    }
 }
 
 void PauseState::update(const float deltaTime) {

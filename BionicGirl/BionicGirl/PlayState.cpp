@@ -6,15 +6,15 @@ PlayState PlayState::m_playState;
 
 void PlayState::init() {
 	// Read a scene with world, player and enemies.
-	TextureMngInst::Instance()->load("./assets/black-mage.bmp", "blackmage");
-	TextureMngInst::Instance()->load("./assets/icon.bmp", "icon");
+	TextureMngInst::Instance()->load("./assets/annie.png", "annie");
+	TextureMngInst::Instance()->load("./assets/liam.png", "liam");
 
-	Vector2D vPlayer = Vector2D(0, 0);
-	GameObject* m_pPlayer = new Player(vPlayer, 42, 48, "blackmage");
+	Vector2D vPlayer = Vector2D(100, 250);
+	GameObject* m_pPlayer = new Player(vPlayer, 32, 32, "annie");
 	//m_pPlayer->load(vPlayer, 42, 48, "blackmage");
 
-	Vector2D vEnemy = Vector2D(50, 0);
-	GameObject* m_pEnemy = new GameObject(vEnemy, 42, 48, "icon");
+	Vector2D vEnemy = Vector2D(250, 250);
+	GameObject* m_pEnemy = new GameObject(vEnemy, 32, 32, "liam");
 
 	m_gameObjects.push_back(m_pPlayer);
 	m_gameObjects.push_back(m_pEnemy);
@@ -43,22 +43,19 @@ void PlayState::resume() {
 }
 
 void PlayState::handle_events() {
-	SDL_Event event;
-
-	if (SDL_PollEvent(&event)) {
-		switch (event.type) {
-		case SDL_QUIT:
-			GameInst::Instance()->quit();
-			break;
-
-		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym) {
-			case SDLK_ESCAPE: // pause play
-				GameInst::Instance()->push_state(PauseState::Instance());
-				break;
-			}
-		}
-	}
+    if (InputHandlerInst::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+    {
+        GameInst::Instance()->push_state(PauseState::Instance());
+    }
+    else if (InputHandlerInst::Instance()->isKeyDown(SDL_SCANCODE_M))
+    {
+        GameInst::Instance()->pop_state();
+        GameInst::Instance()->change_state(PauseState::Instance());
+    }
+    else
+    {
+        // Do nothing
+    }
 }
 
 void PlayState::update(const float deltaTime) {

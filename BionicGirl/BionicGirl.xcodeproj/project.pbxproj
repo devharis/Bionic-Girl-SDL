@@ -26,13 +26,13 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		F8E492BF26C6BAB70076F639 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
 				F8E4930126C6F8100076F639 /* Assets in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F8E492F126C6BE090076F639 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
